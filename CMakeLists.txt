@@ -126,16 +126,17 @@ if(NOT SDL2_FOUND)
     message(FATAL_ERROR "SDL2 required to compile rtl_fm_player")
 endif()
 
-
 ########################################################################
 # Setup the include and linker paths
 ########################################################################
 include_directories(
     ${CMAKE_SOURCE_DIR}/include
     ${LIBUSB_INCLUDE_DIR}
-    ${SDL2_INCLUDE_DIRS}
+    ${SDL2_INCLUDE_DIRS} 
+    ${SDL2_INCLUDE_DIR}
     ${THREADS_PTHREADS_INCLUDE_DIR}
 )
+
 
 #link_directories(
 #    ...
