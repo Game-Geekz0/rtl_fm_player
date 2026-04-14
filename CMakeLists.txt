@@ -92,8 +92,27 @@ set(THREADS_USE_PTHREADS_WIN32 true)
 endif()
 find_package(Threads)
 
+#if SDL2 gives errors uncomment this line and comment out the lines follwoing
+#find_package(SDL2)
 
-find_package(SDL2)
+########################################################################
+# Fixed SDL2 Discovery
+########################################################################
+find_package(SDL2 QUIET)
+
+if(NOT SDL2_FOUND)
+    find_package(PkgConfig REQUIRED)
+    pkg_check_modules(SDL2 sdl2)
+endif()
+
+if(NOT SDL2_FOUND)
+    message(FATAL_ERROR "SDL2 required but not found. 
+    Install it via:
+    Ubuntu/Debian: sudo apt install libsdl2-dev
+    Fedora: sudo dnf install SDL2-devel
+    Arch: sudo pacman -S sdl2")
+endif()
+
 
 if(NOT LIBUSB_FOUND)
     message(FATAL_ERROR "libusb-1.0 required to compile rtl_fm_player")
