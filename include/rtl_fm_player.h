@@ -113,6 +113,7 @@ struct dongle_state
 {
 	int exit_flag;
 	pthread_t thread;
+    int mode; // 0 = FM, 1 = AM
 	rtlsdr_dev_t *dev;
 	int dev_index;
 	uint32_t freq;
