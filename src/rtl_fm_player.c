@@ -1784,11 +1784,16 @@ int main(int argc, char **argv)
         
       } /* if keybrd */
 
-      if ((keybrd==97) || (keybrd==65)) { /* A */
-        _circbuffeshift+=20;
-        reprintline=1;
-        if (SDL_GetQueuedAudioSize(_audio_device) > CIRCBUFFCLUSTER * 5)
-          SDL_ClearQueuedAudio(_audio_device);
+    	  if ((keybrd==97) || (keybrd==65)) { /* A */
+	 if (demod.mode == 0) {
+        	demod.mode = 1;
+    	    fprintf(stderr, "\nSwitched to AM\n");
+   	   } else {
+    	    demod.mode = 0;
+	        fprintf(stderr, "\nSwitched to FM\n");
+	    }
+	  }
+
       }
       if ((keybrd==100) || (keybrd==68)) { /* D */
         _circbuffeshift-=20;
